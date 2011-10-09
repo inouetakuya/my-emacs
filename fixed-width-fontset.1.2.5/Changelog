@@ -1,0 +1,209 @@
+2008-03-27  Takashi HIROMATSU  <matsuan@users.sourceforge.jp>
+
+	* official 1.2.5 release
+	* ntemacs-font.el: modified for emacs-22.2
+	* fixed-width-fontset.el: use 'string-to-number instead of string-to-int
+
+2008-03-10  Takashi HIROMATSU  <matsuan@users.sourceforge.jp>
+
+	* official 1.2.4 release
+	* ntemacs-font.el: modified for emacs-22.1.92
+
+2008-02-24  Takashi HIROMATSU  <matsuan@users.sourceforge.jp>
+
+	* official 1.2.3 release
+	* ntemacs-font.el, carbon-font.el, fixed-width-fontset.el:
+	fixed-width-fontset-template is relocated from
+	fixed-width-fontset.el to others for bug fix.
+
+2008-02-20  Takashi HIROMATSU  <matsuan@users.sourceforge.jp>
+
+	* official 1.2.2 release
+	* ntemacs-font.el: modified for emacs-22.1.91
+
+2008-02-20  Takashi HIROMATSU  <matsuan@users.sourceforge.jp>
+
+	* official 1.2.1 release
+	* ntemacs-font.el: modified for emacs-22.1.90
+
+2007-07-22  Takashi HIROMATSU  <matsuan@users.sourceforge.jp>
+
+	* official 1.2 release
+	* fixed-width-fontset.el (fixed-width-set-fontset): new function
+
+2007-06-28  Takashi HIROMATSU  <matsuan@users.sourceforge.jp>
+
+	* official 1.1 release
+	* carbon-font.el: most of fontset are changed.
+
+2007-06-03  Takashi HIROMATSU  <matsuan@users.sourceforge.jp>
+
+	* official 1.0 release
+	* carbon-font.el, ntemacs-font.el: doc changed
+
+2007-05-20  Takashi HIROMATSU  <matsuan@users.sourceforge.jp>
+
+	* fixed-width-fontset.el (fixed-width-rescale): new variable
+
+2007-01-17  Takashi HIROMATSU  <matsuan@users.sourceforge.jp>
+
+	* carbon-font.el (fixed-width-append-factor): change scale factor
+	* ntemacs-font.el (fixed-width-append-factor): change scale factor
+	* fixed-width-fontset.el: initialize routine changed
+
+2005-11-24  Takashi HIROMATSU  <matsuan@users.sourceforge.jp>
+
+	* fixed-width-fontset.el (fixed-width-append-factor): bug fixed
+
+2005-11-20  Takashi HIROMATSU  <matsuan@users.sourceforge.jp>
+
+	* carbon-font.el (fixed-width-encode-reg-alist): cjk registries
+	are set as iso10646.
+	(fixed-width-xlfd-template): ascii font is changed from mac-roman
+	to iso10646.
+	(carbon-font-encode-family-list-hiraginomaru): cjk fonts
+	registries are set as iso10646.
+	(carbon-font-encode-family-list-hiraginokaku): ditto
+	(carbon-font-encode-family-list-hiraginomin): ditto
+	(carbon-font-encode-family-list-osaka): ditto
+	(fixed-width-get-scale-alist): changed depend on fonts.
+	Doc. changed.
+
+2005-11-17  Takashi HIROMATSU  <matsuan@users.sourceforge.jp>
+
+	* carbon-font.el: Doc. changed.
+
+	* fixed-width-fontset.el (fixed-width-set-default-fontset): new function
+	(after-setting-font-hook): modified for keeping rescale-alist on initial
+	frame.
+	(set-default-font): ignore advice
+
+2005-11-15  Takashi HIROMATSU  <matsuan@users.sourceforge.jp>
+
+	* ntemacs-font.el: Doc. changed slightly
+
+	* carbon-font.el: Doc. changed slightly
+
+	* fixed-width-fontset.el (fixed-width-append-factor): add font check
+	routine.
+	(fixed-width-make-frame-function): check existance initial frame
+	(fixed-width-initial-frame): change initialize timing to making first
+	new frame from loading file.
+	(before-make-frame-hook): ditto
+	(emacs-startup-hook): add face-font-rescale-alist initialize routine
+	after making initial frame.
+	(set-default-font): adviced to add font element to the
+	`default-frame-alist.
+
+2005-10-10  Takashi HIROMATSU  <matsuan@users.sourceforge.jp>
+
+	* carbon-font.el (fixed-width-get-scale-alist): cyrillic support
+	(carbon-font-encode-family-list-hiraginomaru)
+	(carbon-font-encode-family-list-hiraginokaku)
+	(carbon-font-encode-family-list-hiraginomin)
+	(carbon-font-encode-family-list-osaka): Atsui support
+
+2005-10-10 sakito <sakito@users.sourceforge.jp>
+
+	* doc: add doc directory.
+	.cvsignore
+	carbon-font-ja.texi
+	txi-ja.tex
+	txi-en.tex
+	texinfo.tex
+	version.tex
+	version.texi
+
+2005-10-04  Takashi HIROMATSU  <matsuan@users.sourceforge.jp>
+
+	* ntemacs-font.el (fixed-width-get-scale-alist): modified by
+	functions minor change.
+
+	* fixed-width-fontset.el
+	(fixed-width-create-encode-family-reg-list): sophisticated
+	(fixed-width-create-fontset): sophisticated
+	(fixed-width-append-factor): merged with fixed-width-get-scale
+	(fixed-width-get-scale): obsoleted
+	(fixed-width-make-frame-function): simplified
+
+	* carbon-font.el 
+	(fixed-width-scale-alist-hiragino) 
+	(fixed-width-scale-alist-two-byte-bold)
+	(fixed-width-scale-alist-osaka-normal)
+	(fixed-width-scale-alist-osaka-bold)
+	(fixed-width-scale-alist-monaco-bold): new variables
+	(fixed-width-get-scale-alist): simplified by new variables
+
+;; Changelog
+;;
+;; 1_5_0    2005-09-13
+;;	carbon-font と、ntemacs-font を統合。
+;;	fixed-width-fontset.el 共通の関数設定部を独立
+;;	Cahngelog を独立。
+;;	frame 毎に、別のfontsetを設定しても、リスケールが影響しないように、
+;;	face-font-rescale-alistを、frame-parameter化した.
+;;	
+;; 1_4_2   2005-08-03
+;;         本家 lisp/international/fontset.el を参考に関数を書き換え。簡素化。
+;;         定数を括り出して、将来の拡張を可能に。
+;; 1_4_0   2005-07-27
+;;         山本さん(Mew)に関数を書き換えていただきました。
+;;         この変更により、fontsetの指定方法が変わりました。
+;;         silk サポートを中止しました。
+;;         明朝にあわせて、gb2312、big5、ksc5601のフォントを変更
+;;
+;; 1_3_0   2005-07-04 face 対応を全fontsetに
+;;         ascii font の設定を create-fontset-from-mac-roman-font に変更
+;;         山本さん(emacs-devel)の助言により変更しました。
+;;
+;; 1_2_2   2005-05-21 Tiger対策
+;;         monaco が表示できないサイズのalternativeとして、ayuthaya 固定ではなく
+;;         新たに、変数 carbon-font-monaco-alternative を設けて、デフォルトに
+;;         "lucida sans typewriter" を設定。
+;; 1_2_1 2005-04-17 以下を追加
+;;         mac-roman-lower, mac-roman-upper,
+;;         mule-unicode-0100-24ff, mule-unicode-2500-33ff,
+;;         mule-unicode-e000-ffff, iso10646-1
+;;
+;; 1_2_0   2005-03-27 相田さんの変更を取り込み
+;;         fontset 設定の関数化
+;;         iso8859-15 を追加
+;;         
+;; 1_1_1   2005-02-27
+;;         centraleurope、cyrillic のFontを調整
+;; 1_1_0   2005-01-30   
+;;         centraleurope、cyrillic に 対応
+;;         osakaの一部に、font-face 対応
+;;
+;; 1_0_2   2005-01-16
+;;         courier new の存在を自動判別するように変更
+;; 1_0_1   2004-12-12
+;;         ayuthaya font のencode名が、cyrillicに成ったのに伴い、詠み
+;;         込めなくなったので、FIX。
+;; 1_0_0   2000-11-14 版を、1_0_0 とする。
+;;
+;; 3.2版   2004-11-14
+;;         マイナーバグフィックス & 関数名整理
+;;          Doc. 整理、配布条件変更
+;; 3.1版   2004-10-11
+;;	   ayuthaya の自動判定方法変更
+;;         hiraginomin07,09,10,16パラメータ変更
+;;	   hiraginomin07,16に、courier new 使用
+;; 3  版   2004-10-10
+;;	   face-font-rescale-alist を自動設定化
+;;
+;; 2.3版   2004-10-09
+;;	   carbon-font-sub取り込み
+;; 2.2版   2004-05-30
+;;	   説明追加
+;;         bug修正
+;; 2.1版   2004-05-12
+;;         bug修正
+;;         Osaka追加
+;;
+;; 2  版   2004-05-04
+;;         Apple 由来のFontだけにするため、Andale mono を、Authaya に変更
+;;         ヒラギノ角ゴ、ヒラギノ明朝を追加
+;;         07,08 point を追加
+;; 
+;; 初版    2004-03-16

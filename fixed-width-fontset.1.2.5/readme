@@ -1,0 +1,27 @@
+fixed-width-fontset package
+
+This package provides fixed-width CJK fontsets for Carbon Emacs on Mac OS X
+and Emacs on W32 called NTEmacs.
+
+1. Usage
+
+Mac OSX user
+    Please read documentation in carbon-font.el
+
+Windows user
+    Please read documentation in ntemacs-font.el
+
+2. files
+
+Changelog               : previous Changelogs for carbon-font.el
+carbon-font.el          : OS oriented variables are defined for Mac OSX.
+fixed-width-fontset.el  : provide functions to create CJK fontsets and to adjust
+                          face-font-rescale-alist automatically.
+ntemacs-font.el         : OS oriented variables are defined for MS Windows.
+ntemacs-font-sample.el  : Samples for fontset creation using fonts not
+                          oriented from OS
+readme                  : This file
+readme.ja               : readme (ja)
+    
+                                            2005-09-13 Takashi Hiromatsu
+                                                matsuan@users.sourceforge.jp

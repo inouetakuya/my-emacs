@@ -1,0 +1,516 @@
+commit 65b9724114bd518940cbc0d785f68a3610d76ade
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Sun Oct 9 16:40:28 2011 +0900
+
+    Emacs を独立して管理することにした
+    .emacs.d >> ~/.emacs.d
+
+commit e46017c7a09c8657a10d87933c47c8d26fb5ce4f
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Sun Oct 9 16:20:25 2011 +0900
+
+    init.el >> キーバインドを切り離して keybinds.el にまとめた
+    
+    +++ b/.emacs.d/init.d/keybinds.el
+    +;; キーバインド（グローバル）
+    +(global-set-key "\C-h" 'delete-backward-char)
+    +(global-set-key "\C-c>" 'comment-region)
+    +(global-set-key "\C-c<" 'uncomment-region)
+    +(global-set-key "\C-xg" 'goto-line)
+    
+    +++ b/.emacs.d/init.el
+    +;; キーバインド
+    +;; (setq load-path (cons "~/.emacs.d/init.d" load-path))
+    +(load "~/.emacs.d/init.d/keybinds.el")
+
+commit b2018103525c614ff6c57289d53d7bbd59fdef6a
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Sun Oct 9 13:55:17 2011 +0900
+
+    emacs >> git mv .emacs .emacs.d/init.el
+
+commit c6fa2ac22b7db2d2c99af92c3fffaf61a25c1eaf
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Tue Aug 16 00:20:57 2011 +0900
+
+    .keysnail.js >> History プラグインを追加した
+    
+    +key.setGlobalKey(["C-c", "h"], function (ev, arg) {
+    +    ext.exec("history-show", arg);
+    +}, "履歴リストを表示", true);
+
+commit 22d7e882eac8ac84b4d6e8bce54a6a08f1601c39
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Tue Aug 16 00:09:59 2011 +0900
+
+    .keysnail.js >> bmany プラグインのキーバインドを追加
+    
+    ブックマーク、ツールバーのブックマーク、タブの一覧表示
+    +key.setGlobalKey(["C-x", "b"], function (ev, arg) {
+    +    ext.exec("bmany-list-all-bookmarks", arg, ev);
+    +}, "ブックマークを一覧表示");
+    
+    +key.setGlobalKey(["C-x", "l"], function (ev, arg) {
+    +    ext.exec("bmany-list-toolbar-bookmarks", arg, ev);
+    +}, "ツールバーのブックマークを一覧表示");
+    
+    -key.setViewKey("t", function (ev, arg) {
+    +key.setGlobalKey(["C-x", "t"], function (ev, arg) {
+         ext.exec("tanything", arg);
+     }, "タブを一覧表示", true);
+    
+    -key.setViewKey(['C-x', 'l'], function (ev, arg) {
+    +key.setViewKey('C-l', function (ev, arg) {
+         ext.exec("prefer-ldrize-toggle-status", arg, ev);
+     }, 'LDRize 優先状態の切り替え', true);
+
+commit f5081b95bc4578bab2bddf317d8d04822572ef86
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Mon Aug 15 22:23:35 2011 +0900
+
+    .keysnail.js >> Hatebnail プラグインのキーバインドを追加した
+    
+    +key.setGlobalKey(["C-x", ";"], function (ev, arg) {
+    +    ext.exec("list-hateb-items", arg);
+    +}, "はてなブックマークのアイテムを一覧表示", true);
+    +
+    +key.setViewKey("c", function (ev, arg) {
+    +    ext.exec("list-hateb-comments", arg);
+    +}, "はてなブックマークのコメントを一覧表示", true);
+    
+    +plugins.options["hatebnail.list_bookmarks_limit"] = 9999;
+
+commit 1088cee98d687e250c45ef581f639677ac4e3f53
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Mon Aug 15 21:52:36 2011 +0900
+
+    .keysnail.js >> Tanything プラグインを追加した
+    
+    + key.setViewKey("t", function (ev, arg) {
+    +     ext.exec("tanything", arg);
+    + }, "タブを一覧表示", true);
+
+commit 6cfe1ca4c44532f9bb89ba82754b0ec3eafc2dfe
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Tue Jul 19 04:56:08 2011 +0900
+
+    110718 MacPorts から Homebrew に乗り換えたのでパスを変更した
+    
+    下記をコメントアウトした
+    +;; ;; MacPorts のパスを優先させる
+    +;; (setenv "PATH"
+    +;;         (concat '"/opt/local/bin:"    ;; MacPorts へのパス
+    +;;                 '"/usr/local/bin:"    ;; Django の django-admin.py へのシンボリックリンク
+    +;;                 (getenv "PATH")))
+
+commit 1dd20121e1e4f2c2608a0acdc78dfed743567cf5
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Sun Jul 3 17:22:29 2011 +0900
+
+    .emacs >> 起動時にロゴを表示させないようにした
+    +(setq inhibit-startup-message t)
+
+commit 3c2f797978b04c7acd3b37c02ee0f03866527ea1
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Tue Jun 28 00:42:56 2011 +0900
+
+    git-commit-mode を導入した
+     (require 'git-commit)
+    +(set-face-foreground 'git-commit-summary-face nil)
+    +(set-face-bold-p     'git-commit-summary-face nil)
+    +(set-face-foreground 'git-commit-nonempty-second-line-face nil)
+
+commit ecf4d5da052f0a5a6cdca1fc6c511efcb640a1b6
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Mon Jun 27 23:13:59 2011 +0900
+
+    when を使えるようになったので、Carbon Emacs のフォント設定と Elscreen を復活させた
+
+commit 04c2f4cb6dc5b959ac94f198f1de9cbb9dfdc81d
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Sat Jun 25 00:45:11 2011 +0900
+
+    下記コードは、Emacs 23.3 及びターミナルの Emacs 起動時にエラーとなる
+    Emacs 23.3 への乗り換え準備のため、下記をコメントアウトした
+    フォント -(fixed-width-set-fontset "hiramaru" 14)
+    Elscreen -(load "elscreen" "ElScreen" t)
+
+commit 75a6036d1a3c142df05d40bda3e6cb9a13bb730f
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Fri Jun 24 23:56:31 2011 +0900
+
+    .gitconfig を追跡開始
+    .gitconfig を編集して core.editor 下記のとおり変更した
+    /Applications/Emacs.app/Contents/MacOS/bin/emacsclient --alternate-editor emacs
+    
+    また、emacsclient を使うために .emacs を編集した
+    +(require 'server)
+    +(server-start)
+
+commit ae359315a71889b01d90957b6fc1ced9d9870b8a
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Fri Jun 24 23:53:12 2011 +0900
+
+    git-commit-mode を導入した
+
+commit 6e42d8348aa4f4d9e20d712ab962b86489200fe2
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Fri Jun 24 23:27:44 2011 +0900
+
+    multi-term.el と multu-term.elc を追跡開始
+
+commit c15e5010cedc023f6149da6f392a514acc535607
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Wed Jun 22 22:01:10 2011 +0900
+
+    M-x shell にもエスケープシーケンスによる色が付くようにする >> 見送り
+    +;; Emacs テクニックバイブル P189
+    +;; M-x shell にもエスケープシーケンスによる色が付くようにする
+    +;; >> git diff してもカラー表示されない
+    +;; 下記の記事とかみたら、いろいろと大変そうだったので見送った
+    +;; Emacs の shell-mode で zsh を有効活用 - mooz deceives you
+    +;; http://d.hatena.ne.jp/mooz/20090613/p1
+    +;; (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+
+commit 2506869b857f555c07b120d2ed7b02546424c62c
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Wed Jun 22 20:49:48 2011 +0900
+
+    +;; multi-term は term を拡張したモードになります。
+    +;; Emacs 上で快適に Bash や Zsh を利用する設定 : 紹介マニア
+    +;; http://sakito.jp/emacs/emacsshell.html
+    
+    +;; term は確かに優れたモードですがいくつかの問題も存在しています。
+    +;;     * 複数起動ができません
+    +;;     * Emacs の標準的なキーを多数奪ってしまいます
+    +;;     * exit してもバッファが消えません
+    +;;     * Emacs 終了時に term 内の shell を終了していないと自動で終了してくれません
+    +;;     * デバッグプログラムのための専用ウィンドウを持ちません
+    +;; これらを解決するために multi-term.el を利用します。
+    +(require 'multi-term)
+    +(setq multi-term-program shell-file-name)
+
+commit 4072bcd8c3a3c60cad17e9dd8a4f1218045edfe5
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Wed Jun 22 20:32:15 2011 +0900
+
+    +;; ansi-term でも日本語が文字化けしないようにする
+    +;; 一時的な設定変更は（C-c 押した後）M-x set-locale-environment >> utf-8
+    +;; ただし、Emacs 22.3 だと、部分的に文字化けする。Emacs 23.3 なら、文字化けしない
+    +(setq locale-coding-system 'utf-8)
+
+commit befc467ffcdf735c79b81ac486fcc70d4a209c93
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Fri Jun 17 17:25:56 2011 +0900
+
+    Django の django-admin.py を使えるようにするため、/usr/lobal/bin のパスを優先させた
+     (setenv "PATH"
+    -        (concat '"/opt/local/bin:" (getenv "PATH")))
+    +        (concat '"/opt/local/bin:"    ;; MacPorts へのパス
+    +                '"/usr/local/bin:"    ;; Django の django-admin.py へのシンボリックリンク
+    +                (getenv "PATH")))
+
+commit 688e57f975a995980005a761ab0ddc158a2d9f53
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Fri Jun 17 02:23:15 2011 +0900
+
+    MacPorts のパスを優先させた
+    (setenv PATH
+        (concat '/opt/local/bin: (getenv PATH)))
+
+commit b31b366010963eced6acebaac5619a4042eb1f1f
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Fri Jun 17 02:11:59 2011 +0900
+
+    印刷のフォントサイズを 10 にした
+
+commit 9e54926b89cc0474e9080af4b527db30e513b6b0
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Sun Jun 12 21:42:59 2011 +0900
+
+        +;; 論理行ではなく物理行で移動する
+        +(require 'physical-line)
+        +(setq-default physical-line-mode t)
+        +
+        +;; C-x 3 とかしたときにも行の折り返しをする
+        +(setq truncate-partial-width-windows nil)
+
+commit 9cdd16f1f1bdbab9bacaec80f1057dc347af2c17
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Sun Jun 12 19:11:42 2011 +0900
+
+    Git を使うときに日本語でも文字化けしないようにした
+    +(setenv LANG ja_JP.UTF-8)
+
+commit e01d63b1b68c5a915c0616ed3f6c5275eac6aeb5
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Sun Jun 12 19:04:41 2011 +0900
+
+    Emacs でも Git が使えるようにパスを通した
+    +;; パスを通す
+    +(setenv "PATH"
+    +        (concat '"/usr/local/git/bin:" (getenv "PATH")))
+
+commit ad876cb4605f9874a32af837fe51fa3830187cfe
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Fri Jun 3 00:24:58 2011 +0900
+
+    .emacs >> ビープ音を消した
+    +(setq visible-bell t)
+
+commit 8653cac1f69818b92830763242d870bce914c723
+Merge: d13807e e39623d
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Sun May 29 23:47:58 2011 +0900
+
+    Merge branch 'keysnail' into emacs
+    
+    Conflicts:
+    	.keysnail.js
+
+commit e39623dc0fe32b43747e2d8d64e611337532cbd1
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Sun May 29 23:26:07 2011 +0900
+
+    .keysnail >> Firefox も KeyRemap4MacBook により C-i, C-@ を使うようになったため、整合性を取るために変更した / M-p はプリントとして使用したいため削除した
+    -// コントロールを押しながら @ を押すと C-` になる
+    -key.setEditKey([['C-i'], ['C-`']], function (ev) {
+    -    command.setMark(ev);
+    -}, 'マークをセット', true);
+    
+    -key.setCaretKey([['C-`'], ['C-@']], function (ev) {
+    -    command.setMark(ev);
+    -}, 'マークをセット', true);
+    -
+    -key.setCaretKey('M-p', function (ev) {
+    -    command.walkInputElement(command.elementsRetrieverButton, true, true);
+    -}, '次のボタンへフォーカスを当てる');
+    -
+    -key.setCaretKey('M-n', function (ev) {
+    -    command.walkInputElement(command.elementsRetrieverButton, false, true);
+    -}, '前のボタンへフォーカスを当てる');
+
+commit d13807e7b5a945f3d405704101d18224135f47e0
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Sun May 29 22:11:59 2011 +0900
+
+    .emacs > 起動時のフレーム位置を修正した / Aptana studio にならって、goto-line のキーバインドを変更した
+    +    '(left . 50)
+    +(global-set-key "\C-xg" 'goto-line)
+
+commit 8d7257400d4e5e5fd40564979dc6637636138caf
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Sun May 15 12:50:26 2011 +0900
+
+    .emacs > Elscreen
+
+commit ae8321171271e3904bb2c917f56201428e4e944a
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Sun May 15 12:41:43 2011 +0900
+
+    .emacs > 起動時のフレームサイズ
+    +(setq initial-frame-alist
+    +    (append (list
+    +    '(width . 120)
+    +    '(height . 50)
+    +    '(top . 50)
+    +;;    '(left . 0)
+    +    )
+    +    initial-frame-alist))
+    
+    +;; デフォルトのフレームサイズを、起動時のフレームサイズと同一にする
+    +(setq default-frame-alist initial-frame-alist)
+
+commit 0a80f95040a2574cb4b3f9c199c943dab5016c99
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Sun May 15 12:31:06 2011 +0900
+
+    .emacs > カーソル位置から行頭まで削除する
+    +(defun backward-kill-line (arg)
+    +  "Kill chars backward until encountering the end of a line."
+    +  (interactive "p")
+    +  (kill-line 0))
+    +(global-set-key (kbd "C-u") 'backward-kill-line)
+
+commit b5313ed9188e62dc64b181c3ee53ce6acf75e403
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Sun May 15 12:26:17 2011 +0900
+
+    .emacs > タブではなくスペースを挿入する
+    +(setq-default indent-tabs-mode nil)
+
+commit d09e22b620eddc090d89f4ff40d985ab2ddf5ac9
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Sun May 15 12:17:57 2011 +0900
+
+    .emacs > auto-complete > ac-start, ac-stop
+    +(setq ac-auto-start t)
+    +;; (setq ac-auto-start 3)
+    +(global-set-key "\M-/" 'ac-start)
+    +(define-key ac-complete-mode-map "\M-/" 'ac-stop)
+
+commit 8d3f0960947b714b4c4d476286fd0f6d0e7ccee2
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Sun May 15 12:16:00 2011 +0900
+
+    .emacs > auto-complete-mode > ac-next, ac-previous
+    +(define-key ac-complete-mode-map "\C-n" 'ac-next)
+    +(define-key ac-complete-mode-map "\C-p" 'ac-previous)
+
+commit b9316dca0d6feb633687714c4e0b5c5bcb556470
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Wed Mar 30 06:15:02 2011 +0900
+
+    SPC でも Hit a hint を開始できるようにした
+
+commit a061e3decde128275650f0a4b40b4ebdceb43e18
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Wed Mar 30 05:58:39 2011 +0900
+
+    KeySnail - Gmail 使用時に l を無効化
+
+commit 425983ef396307bd461410a7f6d6d8db69fbc5b5
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Mon Mar 7 13:58:47 2011 +0900
+
+    コンテンツへフォーカス / 仕切りコメントは削除された
+
+commit 4e74a9a36d7b32970a1ae3f28218f45cd9a2d593
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Mon Mar 7 10:40:24 2011 +0900
+
+    タブ移動 / ページ先頭末尾移動 / 仕切りコメント
+
+commit 162495c3c900d60983dd30848f17639b10d994d7
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Mon Mar 7 09:56:30 2011 +0900
+
+    C-\ -> redo / redo.el
+
+commit 4aa8e28598317c20f5c0f6b41f7dcc04d8469c9e
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Mon Mar 7 00:57:46 2011 +0900
+
+    シフト + 矢印で範囲選択
+
+commit f745d63ccc6d482a7d1b2550c6d0f6a7c8ec2347
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Mon Mar 7 00:37:23 2011 +0900
+
+    add .emacs.d
+
+commit ad3313d7967ce4ad81927777b5c0d5d3d83a0fdd
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Mon Mar 7 00:31:53 2011 +0900
+
+    フォント / カラー
+
+commit eb93692ae33d16c9f8d8075dc9352177cc545858
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Mon Mar 7 00:27:02 2011 +0900
+
+    行番号、列番号を表示 / jaspace
+
+commit a5ed8d0bdbe2aee1fee8bded9b47708f61e4c822
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Sun Mar 6 23:36:19 2011 +0900
+
+    キーバインド（グローバル）/ commment, goto-line
+
+commit 35d7fae6c07a1ac32475dcf6731453435f61144a
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Sun Mar 6 17:17:29 2011 +0900
+
+    リージョンのハイライト
+    日々、とんは語る
+
+commit f4efc69fb0f32ee4d94e5828d39fcc5db45f4402
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Sun Mar 6 17:08:32 2011 +0900
+
+    auto-complete
+    日々、とんは語る
+
+commit 35f5917a28c5d3c30fd43b703f27bbf4862773b3
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Sun Mar 6 17:00:59 2011 +0900
+
+    load-path / install-elisp
+    日々、とんは語る
+
+commit 9ebcde9d23a519929d2962131c9cfa6dfd359359
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Sun Mar 6 16:38:57 2011 +0900
+
+    .keysnail.js を手動整形した
+
+commit 2f0ba1bee12df880a3393cc991d0df2c1809f90e
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Sun Mar 6 15:56:41 2011 +0900
+
+    選択中のテキストをコピー
+    タブを閉じる機能との競合を避けるため、EditKey にした
+
+commit f6d8101da4589774d4a2a58c4e872f184f7a6163
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Sun Mar 6 15:52:57 2011 +0900
+
+    疑似フルスクリーン状態を切り替え / ウィンドウを最大化 / 元の大きさに戻す
+
+commit de23bca6466f94700db9a2a9de995e1ed54ba32a
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Thu Mar 3 23:00:12 2011 +0900
+
+    URL とタイトルをコピー
+
+commit baff38e0dccf2e515eea5bfc46161ba4ded89142
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Thu Mar 3 22:38:50 2011 +0900
+
+    はてなブックマークのキーマップ
+
+commit f724ac5d22218a818fa2b593e97950e2e3422354
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Thu Mar 3 22:25:20 2011 +0900
+
+    サイトローカル・キーマップ
+    http://d.hatena.ne.jp/mooz/20091101/p1
+
+commit ac7d092e28b02be80d370cacf2dd13e77bec25f6
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Thu Mar 3 21:46:24 2011 +0900
+
+    Prefer LDRize
+    "//" からはじまるコメントは自動整形時に削除されたので、
+    設定ファイル上部に移動させたが、結局再び削除された
+
+commit d654809b047f9cc56fa6052e7f251bc281b6b259
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Thu Mar 3 21:35:38 2011 +0900
+
+    HoK キーボードでリンクを開く
+
+commit ced16e5bcceb343b3ae5a29c6b1e31d37517b357
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Thu Mar 3 21:13:14 2011 +0900
+
+    アンドゥ、リドゥ、マークをセット
+
+commit eb3bada5ae844eeda7cb45d6d1a859c8195fcea3
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Thu Mar 3 21:02:00 2011 +0900
+
+    .keysnail.js を自動整形した
+
+commit f1a8a185a906888c3074ef3cab16432bc06ab928
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Thu Mar 3 00:22:50 2011 +0900
+
+    add .keysnail.js default
+
+commit 9fbbe6da89bbe7163c0a92ce9d8fff862793ec08
+Author: INOUE Takuya <inouetakuya5@gmail.com>
+Date:   Thu Mar 3 00:21:13 2011 +0900
+
+    add .emacs
+    \C-h -> delete

@@ -1,0 +1,221 @@
+\input texinfo    @c -*-texinfo-*-
+@c $Id$
+@c %**start of header
+@setfilename carbon-font-ja.info
+@include version.texi
+@settitle carbon-font -- fontsets for Carbon Emacs @value{VERSION}
+@syncodeindex pg cp
+@c %**end of header
+@copying
+この文書は carbon-font.el の設定マニュアルです。
+
+Copyright @copyright{} 2005 MacEmacs JP Project,@w{T. Hiromatsu},@w{sakito}
+
+@quotation
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+published by the Free Software Foundation; with no Invariant Sections,
+with the Front-Cover Texts being ``A GNU Manual,'' and with the
+Back-Cover Texts as in (a) below.  A copy of the license is included in
+the section entitled ``GNU Free Documentation License.''
+
+(a) The FSF's Back-Cover Text is: ``You have freedom to copy and modify
+this GNU Manual, like GNU software.  Copies published by the Free
+Software Foundation raise funds for GNU development.''
+@end quotation
+@end copying
+
+@dircategory Font
+@direntry
+* carbon-font-ja: (carbon-font-ja)carbon-font.
+@end direntry
+
+@titlepage
+@title carbon-font -- fontsets for Carbon Emacs
+@subtitle for version @value{VERSION}
+@author MacEmacs JP Project
+@author @w{T. Hiromatsu} (<@email{matsuan@@users.sourceforge.jp}>
+@author @w{sakito} (<@email{sakito@@users.sourceforge.jp}>
+@page
+@vskip 0pt plus 1filll
+@insertcopying
+@end titlepage
+
+@contents
+
+@ifnottex
+@node Top
+@top carbon-font -- fontsets for Carbon Emacs
+
+@insertcopying
+@end ifnottex
+
+@menu
+* Introduction::                
+* Usage::                       
+* createfontset::               
+* Supported Encodings::         
+* Copying This Manual::         
+* Index::                       
+@end menu
+
+
+@node Introduction
+@chapter Introduction
+
+@section このファイルの中身
+
+このファイルは、carbon emacs on Mac OSX で、2バイト文字と、ascii を 1:2
+の幅で(所謂等幅)で、表示するためのfontset定義の例を示しています。
+
+定義しているのは、下記の4種の文字セットです。
+
+@table @dfn
+@item hiraginomaru
+Monaco + ヒラギノ丸ゴ
+
+@item hiraginokaku
+Monaco + ヒラギノ角ゴ
+
+@item osaka
+Monaco + osaka
+
+@item hiraginomin
+Courier  + ヒラギノ明朝
+@end table
+
+point 7,8,9,10,12,14,16,18,20,24 のサイズ
+
+を定義しています。つまり、このファイルでは、40種の、fontset を定義していることになります。
+
+defaultのサイズは、12です。
+
+@section 動作環境
+
+carbon emacs は、2005-06-01 以降のCVSから入手した物を御使いください。そ
+れ以前の物は、.emacs読み込みの時にエラーになる可能性があります。
+
+種々な知恵を授けてくださった、mac-emacsen ML や 2ch mac de emacs会議室の
+方々に感謝します。
+
+@node Usage
+@chapter Usage(使い方)
+
+@section Install
+
+下記2つのファイルをロードパスの通ったところに置いて下さい。
+
+@itemize
+@item carbon-font.el (this file)
+@item fixed-width-fontset.el
+@end itemize
+
+@section load package
+
+@lisp
+(if (eq window-system 'mac) (require 'carbon-font))
+@end lisp
+としてください。
+
+@section set fontset
+
+次のようにした場合、
+@lisp
+(set-default-font "fontset-hiraginokaku")
+@end lisp
+ヒラギノ角ゴシックの12point が使われます。
+
+これ以外のサイズを使いたい場合は、
+@lisp
+(set-default-font
+    "-*-*-medium-r-normal--8-*-*-*-*-*-fontset-hiraginomaru")
+(add-to-list
+    'default-frame-alist
+    '(font . "-*-*-medium-r-normal--8-*-*-*-*-*-fontset-hiraginomaru"))
+@end lisp
+としてください。
+
+最初は、fontsetの指定をしないで、shift + click で出てくる、fontset menu 
+から、お好みの物を探す方が良いかもしれません。
+
+@node createfontset
+@chapter 別のフォントセットを作りたい場合
+
+@section 別の組合せの fontset を設定したい場合。(新機能)
+
+@lisp
+(carbon-font-create-fontset fontset size list)
+@end lisp
+を使ってください。
+
+@table
+@item fontset
+fontset の名前(striings)
+@item size
+設定したいサイズ、又はサイズのリスト
+@item list
+エンコーディングとフォントのファミリーネームの連想リスト
+@end table
+
+例えば、courier に ヒラギノ丸ゴシックを組み合わせたい場合
+
+@c EUC-JPでは表示できない文字をどうするか？
+@c Texinfo は現状Unicode対応していなかったような記憶があります
+@c またパッチあてない状態でEUC-JP 以外は困難かもしれず
+@c 調査中です。ご了承ください(sakito)
+@lisp
+(setq carbon-font-encode-family-list-courier
+    '((ascii . "courier")
+    (japanese-jisx0208 . "ヒラギノ丸ゴ*")
+    (katakana-jisx0201 . "ヒラギノ丸ゴ*")
+    (chinese-gb2312 . "EUC-JPでは表示できません*")
+    (chinese-big5-1 . "EUC-JPでは表示できません*")
+    (korean-ksc5601 . "applegothic*")))
+@end lisp
+
+等と定義しておいて、
+
+@lisp
+(carbon-font-create-fontset "courier"
+    carbon-font-defined-sizes
+    carbon-font-encode-family-list-courier)
+@end lisp
+を評価すれば、7〜24 までのサイズの fontset が、fontset-courier という名
+前で定義されます。
+
+@node Supported Encodings
+@chapter 現在、carbon emacs が、サポートしているエンコーディング
+
+@lisp
+`mac-charset-info-alist shows
+(("mac-dingbats" 34 nil)
+ ("adobe-fontspecific" 33 nil)
+ ("mac-symbol" 33 nil)
+ ("mac-centraleurroman" 29 mac-centraleurroman)
+ ("gb2312.1980-0" 25 chinese-iso-8bit)
+ ("mac-cyrillic" 7 mac-cyrillic)
+ ("ksc5601.1989-0" 3 korean-iso-8bit)
+ ("big5-0" 2 chinese-big5)
+ ("jisx0201.1976-0" 1 japanese-shift-jis)
+ ("jisx0208.1983-sjis" 1 japanese-shift-jis)
+ ("mac-roman" 0 mac-roman))
+@end lisp
+
+"mac-roman" は、下記のように3つのエンコーディングを含んでいます。
+@lisp
+;; Create a fontset that uses mac-roman font.  With this fontset,
+;; characters decoded from mac-roman encoding (ascii, latin-iso8859-1,
+;; and mule-unicode-xxxx-yyyy) are displayed by a mac-roman font.
+@end lisp
+
+@node Copying This Manual
+@appendix Copying This Manual
+
+@insertcopying
+
+@node Index
+@unnumbered Index
+
+@printindex cp
+
+@bye

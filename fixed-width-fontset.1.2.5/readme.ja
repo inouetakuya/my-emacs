@@ -1,0 +1,27 @@
+fixed-width-fontset package
+
+このパッケージは、Mac OSX と、Windows 上で動作する、Emacs に、CJK 等幅を実
+現する、フォントセットを供給するためのものです。
+
+1. Usage
+
+Mac OSX user
+    carbon-font.el 前半の、説明をお読みください。
+
+Windows user
+    ntemacs-font.el 前半の、説明をお読みください。
+
+2. files
+
+Changelog               : これまでの、carbon-font.el のchangelog です。
+carbon-font.el          : OS oriented variavles are defined for Mac OSX.
+fixed-width-fontset.el  : fontset を定義する関数と、face-font-rescale-alist
+                          を自動的に調整する為の関数群を提供します。
+ntemacs-font.el         : OS oriented variavles are defined for MS Windows.
+ntemacs-font-sample.el  : OS由来でない、font を使った、fontest 設定例。
+                          IPAフォント、ＹｏＺフォント、osaka 等
+readme                  : readme (en)
+readme.ja               : This file
+    
+                                            2005-09-13 Takashi Hiromatsu
+                                                matsuan@users.sourceforge.jp
