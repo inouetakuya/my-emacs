@@ -39,19 +39,6 @@
 (define-key ac-complete-mode-map "\C-n" 'ac-next)
 (define-key ac-complete-mode-map "\C-p" 'ac-previous)
 
-;; ============================================================
-;; Emacs設定講座 その3「scratch バッファと eval(評価)」。 - 日々、とんは語る。
-;; http://d.hatena.ne.jp/tomoya/20090215/1234692209
-
-;; C-j は scratch 上では、eval-print-last-sexp というコマンドが実行されます。
-;; これは、カーソルの最寄りの関数や変数を評価して、返り値を下の行に表示してくれます。
-
-;; リージョンのハイライト
-(setq transient-mark-mode t)
-
-;; ============================================================
-;; 入門 GNU Emacs
-
 ;; タブではなくスペースを挿入する
 (setq-default indent-tabs-mode nil)
 
@@ -121,82 +108,10 @@
 (require 'physical-line)
 (setq-default physical-line-mode t)
 
-;; C-x 3 とかしたときにも行の折り返しをする
-(setq truncate-partial-width-windows nil)
-
-;; キーバインド
+;; 初期ファイルの読み込み
 ;; (setq load-path (cons "~/.emacs.d/init.d" load-path))
 (load "~/.emacs.d/init.d/keybinds.el")
-
-;; 行番号を表示
-(require 'linum)
-(global-linum-mode t)
-
-;; 列番号を表示
-(column-number-mode t)
-
-;; 対応する括弧を光らせる
-(show-paren-mode t)
-
-;; jaspace を有効化
-(require 'jaspace)
-
-;; 全角空白を表示させる
-(setq jaspace-alternate-jaspace-string "□")
-
-;; 改行記号を表示させる
-(setq jaspace-alternate-eol-string "↓\n")
-
-;; タブを表示
-(setq jaspace-highlight-tabs t)
-
-;; フック
-(add-hook 'text-mode-hook 'jaspace-mode)
-
-;; 印刷のフォントサイズは、フォント設定よりも上部に書く
-(setq mac-print-font-size 10)
-
-;; フォント
-;; Carbon版 Emacs 22.1 のフォント設定
-;; http://macemacsjp.sourceforge.jp/matsuan/FontSettingJp.html
-(when (eq window-system 'mac)
-  (require 'carbon-font)
-  (fixed-width-set-fontset "hiramaru" 14))
-
-;; ------------------------------------------------------------
-;; Color
-(if window-system (progn
-    (set-background-color "Black")
-    (set-foreground-color "LightGray")
-    (set-cursor-color "Gray")
-    (set-frame-parameter nil 'alpha 80)
-    )
-)
-(custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
-)
-(custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
-)
-
-;; 起動時のフレームサイズ
-(setq initial-frame-alist
-    (append (list
-    '(width . 120)
-    '(height . 50)
-    '(top . 50)
-    '(left . 50)
-    )
-    initial-frame-alist))
-
-;; デフォルトのフレームサイズを、起動時のフレームサイズと同一にする
-(setq default-frame-alist initial-frame-alist)
+(load "~/.emacs.d/init.d/view.el")
 
 ;; ビープ音を消す
 (setq visible-bell t)
@@ -246,6 +161,5 @@
 ;;   C-z T    Show/hide the tab on the top of each frame.
 ;;   C-z v    Display ElScreen version.
 ;;   C-z ?    Show key bindings of ElScreen and Add-On softwares.
-
 
 
