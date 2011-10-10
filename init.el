@@ -39,9 +39,6 @@
 (define-key ac-complete-mode-map "\C-n" 'ac-next)
 (define-key ac-complete-mode-map "\C-p" 'ac-previous)
 
-;; タブではなくスペースを挿入する
-(setq-default indent-tabs-mode nil)
-
 ;; ============================================================
 ;;【コラム】OS X ハッキング! (79) Carbon Emacsの設定(1) | パソコン | マイコミジャーナル
 ;; http://journal.mycom.co.jp/column/osx/079/index.html
@@ -104,10 +101,6 @@
 ;; 起動時にロゴを表示させない
 (setq inhibit-startup-message t)
 
-;; 論理行ではなく物理行で移動する
-(require 'physical-line)
-(setq-default physical-line-mode t)
-
 ;; 初期ファイルの読み込み
 ;; (setq load-path (cons "~/.emacs.d/init.d" load-path))
 (load "~/.emacs.d/init.d/keybinds.el")
@@ -116,50 +109,9 @@
 ;; ビープ音を消す
 (setq visible-bell t)
 
-;; ============================================================
 ;; Elscreen
 (when (eq window-system 'mac)
   (load "elscreen" "ElScreen" t))
 
-;; Usage
-;; -----
-;; You may use following sequences on ElScreen:
-;; 
-;;   C-z c
-;;   C-z C-c  Create a new screen and switch to it.
-;;   C-z C    Create a new screen with the window-configuration of the
-;;            current screen.
-;;   C-z k
-;;   C-z C-k  Kill current screen.
-;;   C-z M-k  Kill current screen and buffers.
-;;   C-z K    Kill other screens.
-;;   C-z n
-;;   C-z C-n  Switch to the "next" screen in a cyclic order.
-;;   C-z p
-;;   C-z C-p  Switch to the "previous" screen in a cyclic order.
-;;   C-z a
-;;   C-z C-a  Toggle to the screen selected previously.
-;;   C-z '    Prompt for a screen number to switch to.
-;;   C-z "    Present a list of all screens for selection.
-;;   C-z 0
-;;     :      Jump to the screen number 0-9.
-;;   C-z 9
-;;   C-z C-s  Swap current screen with previous one.
-;;   C-z w
-;;   C-z C-w  Show a list of screen.
-;;   C-z A    Allow the user to enter a name for the current screen.
-;;   C-z m
-;;   C-z C-m  Repeat the last message displayed in the mini-buffer.
-;;   C-z t
-;;   C-z C-t  Show system information.
-;;   C-z b    Switch to the screen in which specified buffer is displayed.
-;;   C-z C-f  Create new screen and open file.
-;;   C-z C-r  Create new screen and open file but don't allow changes.
-;;   C-z d    Create new screen and run dired.
-;;   C-z M-x  Read function name, then call it with new screen.
-;;   C-z i    Show/hide the screen number in the mode line.
-;;   C-z T    Show/hide the tab on the top of each frame.
-;;   C-z v    Display ElScreen version.
-;;   C-z ?    Show key bindings of ElScreen and Add-On softwares.
 
 

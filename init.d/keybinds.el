@@ -19,3 +19,10 @@
 (setq pc-select-selection-keys-only t)
 (pc-selection-mode t) 
 
+;; タブではなくスペースを挿入する
+(setq-default indent-tabs-mode nil)
+
+;; 論理行ではなく物理行で移動する
+(require 'physical-line)
+(setq-default physical-line-mode t)
+
