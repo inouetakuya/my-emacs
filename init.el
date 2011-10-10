@@ -19,6 +19,13 @@
 ;; M-x dired-install-elisp-from-emacswiki
 ;; dired（Emacs 組み込みのファイラー）で選択しているファイルをEmacsWikiからインストールするコマンド 
 
+;; recentf.el
+;; 最近使ったファイルを開く
+;; Emacs テクニックバイブル P87
+(require 'recentf-ext)
+(setq recentf-max-saved-items 500)
+(global-set-key (kbd "C-c C-r") 'recentf-open-files)
+
 ;; ============================================================
 ;; Emacs(中略)設定講座 その2「elisp のインストールと設定編」。 - 日々、とんは語る。
 ;; http://d.hatena.ne.jp/tomoya/20090124/1232822594
