@@ -1,29 +1,23 @@
-;; ============================================================
 ;; Emacs ビギナーに贈る、これからバリバリ使い隊!!人のための設定講座 その1。 - 日々、とんは語る。
 ;; http://d.hatena.ne.jp/tomoya/20090121/1232536106
 (setq load-path (cons "~/.emacs.d/elisp" load-path))
 
+;; 初期設定ファイルの読み込み
+;; (setq load-path (cons "~/.emacs.d/init.d" load-path))
+(load "~/.emacs.d/init.d/keybinds.el")
+(load "~/.emacs.d/init.d/view.el")
+
 ;; install-elisp
 (require 'install-elisp)
-
-;; インストールする場所
 (setq install-elisp-repository-directory "~/.emacs.d/elisp/")
 
-;; 次からは、インストールしたい Elisp ファイルがあれば、
-;; M-x install-elisp というコマンドを実行して、流れのままに、
-;; Elisp ファイルの URL を入力して、流れのままに C-c C-c とタイプして、
-;; インストールを完了して下さい。
-
-;; その後は、.emacs に設定を書くだけです。
-;; なので、今後は、ほぼ設定を書くという作業だけに集中できる様になりました
-
-;; 参考: install-elisp で使えるコマンド
 ;; M-x install-elisp
-;;   URL を入力して、Elisp をインストールするコマンド
+;; URL を入力して、Elisp をインストールするコマンド
+
 ;; M-x install-elisp-from-emacswiki
-;;   EmacsWikiで公開されている Elisp の名前を入力するだけでインストールできるコマンド
+;; EmacsWikiで公開されている Elisp の名前を入力するだけでインストールできるコマンド
 ;; M-x dired-install-elisp-from-emacswiki
-;;   dired(Emacs 組み込みのファイラー)で選択しているファイルをEmacsWikiからインストールするコマンド 
+;; dired（Emacs 組み込みのファイラー）で選択しているファイルをEmacsWikiからインストールするコマンド 
 
 ;; ============================================================
 ;; Emacs(中略)設定講座 その2「elisp のインストールと設定編」。 - 日々、とんは語る。
@@ -38,17 +32,6 @@
 (define-key ac-complete-mode-map "\M-/" 'ac-stop)
 (define-key ac-complete-mode-map "\C-n" 'ac-next)
 (define-key ac-complete-mode-map "\C-p" 'ac-previous)
-
-;; ============================================================
-;;【コラム】OS X ハッキング! (79) Carbon Emacsの設定(1) | パソコン | マイコミジャーナル
-;; http://journal.mycom.co.jp/column/osx/079/index.html
-
-;; 110718 MacPorts から Homebrew に乗り換えたので不要となった
-;; ;; MacPorts のパスを優先させる
-;; (setenv "PATH"
-;;         (concat '"/opt/local/bin:"    ;; MacPorts へのパス
-;;                 '"/usr/local/bin:"    ;; Django の django-admin.py へのシンボリックリンク
-;;                 (getenv "PATH")))
 
 ;; ============================================================
 ;; Git を使うときに日本語でも文字化けしないようにする
@@ -100,11 +83,6 @@
 ;; ============================================================
 ;; 起動時にロゴを表示させない
 (setq inhibit-startup-message t)
-
-;; 初期ファイルの読み込み
-;; (setq load-path (cons "~/.emacs.d/init.d" load-path))
-(load "~/.emacs.d/init.d/keybinds.el")
-(load "~/.emacs.d/init.d/view.el")
 
 ;; ビープ音を消す
 (setq visible-bell t)
