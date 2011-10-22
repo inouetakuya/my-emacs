@@ -39,6 +39,21 @@
 ;; Emacs テクニックバイブル P52
 ;; (install-elisp "http://tromey.com/elpa/package-install.el")
 
+;; 日本語 info
+;; Emacs テクニックバイブル P56
+;; http://www.rubyist.net/~rubikitch/archive/emacs-elisp-info-ja.tgz
+;; $ sudo -e /usr/share/info/dir
+;; M-x info で Emacs-ja が表示されないため保留
+;; (add-to-list 'Info-default-directory-list "~/info/")
+
+;; Carbon Emacsのinfoの再設定 - Secondary Storage
+;; http://d.hatena.ne.jp/zqwell-ss/20091129/1259500395
+;; Carbon Emacsにelisp, emacsの日本語マニュアルをインストールする - Secondary Storage
+;; http://d.hatena.ne.jp/zqwell-ss/20091206/1260119701
+;; (setenv "INFOPATH"
+;;         (concat '"/Users/inouetakuya/info:"
+;;                 (getenv "INFOPATH")))
+
 ;; recentf.el
 ;; 最近使ったファイルを開く
 ;; Emacs テクニックバイブル P87
