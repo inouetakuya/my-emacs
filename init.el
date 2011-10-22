@@ -70,6 +70,14 @@
 ;;         (concat '"/Users/inouetakuya/info:"
 ;;                 (getenv "INFOPATH")))
 
+;; iswitchb.el
+;; バッファ切替を強化する
+;; Emacs テクニックバイブル P85
+;; C-s で次候補を選択部分文字列に一致する候補を並べてくれる
+(iswitchb-mode t)
+;; バッファ読み取り関数を iswitchb にする
+(setq read-buffer-function 'iswitchb-read-buffer)
+
 ;; recentf.el
 ;; 最近使ったファイルを開く
 ;; Emacs テクニックバイブル P87
