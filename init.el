@@ -85,6 +85,20 @@
 (setq recentf-max-saved-items 500)
 (global-set-key (kbd "C-;") 'recentf-open-files)
 
+;; bookmark.el
+;; ファイル内の特定の位置をブックマークする
+;; Emacs テクニックバイブル P89
+;; ブックマークを変更したら即保存する
+(setq bookmark-save-flag t)
+;; 超整理法
+(progn
+  (setq bookmark-sort-flag nil)
+  (defun bookmark-arrange-latest-top ()
+    (let ((latest (bookmark-get-bookmark bookmark)))
+      (setq bookmark-alist (cons latest (delq latest bookmark-alist))))
+    (bookmark-save))
+  (add-hook 'bookmark-after-jump-hook 'bookmark-arrange-latest-top))
+
 ;; ============================================================
 ;; Emacs(中略)設定講座 その2「elisp のインストールと設定編」。 - 日々、とんは語る。
 ;; http://d.hatena.ne.jp/tomoya/20090124/1232822594
