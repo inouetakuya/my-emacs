@@ -7,17 +7,19 @@
 (load "~/.emacs.d/init.d/keybinds.el")
 (load "~/.emacs.d/init.d/view.el")
 
-;; install-elisp
-(require 'install-elisp)
+;; auto-install.el
+;; Emacs Lisp インストーラを利用する
+;; Emacs テクニックバイブル P49
+;; (install-elisp-from-emacswiki "auto-install.el")
+(require 'auto-install)
+;; 起動時に EmacsWiki のページ名を補完候補に加える
+;; wget が必要 >> $ brew install wget
+(auto-install-update-emacswiki-package-name t)
+;; install-elisp.el 互換モードにする
+(auto-install-compatibility-setup)
 (setq install-elisp-repository-directory "~/.emacs.d/elisp/")
-
-;; M-x install-elisp
-;; URL を入力して、Elisp をインストールするコマンド
-
-;; M-x install-elisp-from-emacswiki
-;; EmacsWikiで公開されている Elisp の名前を入力するだけでインストールできるコマンド
-;; M-x dired-install-elisp-from-emacswiki
-;; dired（Emacs 組み込みのファイラー）で選択しているファイルをEmacsWikiからインストールするコマンド 
+;; ediff 関連のバッファを 1つのフレームにまとめる
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)
 
 ;; C-x C-e
 ;; テキストに埋め込まれた Emacs Lips 式を評価する
@@ -41,6 +43,16 @@
 ;; パッケージを簡単にインストールする
 ;; Emacs テクニックバイブル P52
 ;; (install-elisp "http://tromey.com/elpa/package-install.el")
+
+;;; This was installed by package-install.el.
+;;; This provides support for the package system and
+;;; interfacing with ELPA, the package archive.
+;;; Move this code earlier if you want to reference
+;;; packages in your .emacs.
+(when
+    (load
+     (expand-file-name "~/.emacs.d/elpa/package.el"))
+  (package-initialize))
 
 ;; 日本語 info
 ;; Emacs テクニックバイブル P56
@@ -136,16 +148,3 @@
 (when (eq window-system 'mac)
   (load "elscreen" "ElScreen" t))
 
-
-
-
-
-;;; This was installed by package-install.el.
-;;; This provides support for the package system and
-;;; interfacing with ELPA, the package archive.
-;;; Move this code earlier if you want to reference
-;;; packages in your .emacs.
-(when
-    (load
-     (expand-file-name "~/.emacs.d/elpa/package.el"))
-  (package-initialize))
