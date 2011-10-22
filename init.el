@@ -99,6 +99,14 @@
     (bookmark-save))
   (add-hook 'bookmark-after-jump-hook 'bookmark-arrange-latest-top))
 
+;; wdired.el
+;; ディレクトリ内のファイル名を自由自在に編集する
+;; Emacs テクニックバイブル P102
+;; r で Editable Dired モードにする
+;; 書き換えが終了したら、C-c C-c か C-x C-s
+;; 変更を反映しない場合は C-c C-k
+(define-key dired-mode-map "r" 'wdired-change-to-wdired-mode)
+
 ;; ============================================================
 ;; Emacs(中略)設定講座 その2「elisp のインストールと設定編」。 - 日々、とんは語る。
 ;; http://d.hatena.ne.jp/tomoya/20090124/1232822594
