@@ -19,6 +19,26 @@
 ;; M-x dired-install-elisp-from-emacswiki
 ;; dired（Emacs 組み込みのファイラー）で選択しているファイルをEmacsWikiからインストールするコマンド 
 
+;; C-x C-e
+;; テキストに埋め込まれた Emacs Lips 式を評価する
+;; Emacs テクニックバイブル P43
+;; 役立つハイパーリンク関数
+;; (find-file "ファイル名")
+;; (shell-command "シェルコマンド")
+;; (man "プログラム名")
+;; (info "(ファイル名)ノード名")
+;; (install-elisp "URL")
+;; (install-elisp-from-emacswiki "ファイル名")
+;; (describe-function '関数名)
+;; (describe-variable '変数名)
+;; (find-function '関数名)
+;; (find-variable '変数名)
+
+;; ELPA
+;; パッケージを簡単にインストールする
+;; Emacs テクニックバイブル P52
+;; (install-elisp "http://tromey.com/elpa/package-install.el")
+
 ;; recentf.el
 ;; 最近使ったファイルを開く
 ;; Emacs テクニックバイブル P87
@@ -100,3 +120,14 @@
 
 
 
+
+
+;;; This was installed by package-install.el.
+;;; This provides support for the package system and
+;;; interfacing with ELPA, the package archive.
+;;; Move this code earlier if you want to reference
+;;; packages in your .emacs.
+(when
+    (load
+     (expand-file-name "~/.emacs.d/elpa/package.el"))
+  (package-initialize))
