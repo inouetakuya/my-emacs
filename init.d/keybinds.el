@@ -36,10 +36,16 @@
 (global-set-key (kbd "C-t") 'other-window-or-split)
   
 ;; キーバインド（グローバル）
-(global-set-key "\C-h" 'delete-backward-char)
-(global-set-key "\C-c>" 'comment-region)
-(global-set-key "\C-c<" 'uncomment-region)
-(global-set-key "\C-xg" 'goto-line)
+(global-set-key (kbd "C-h") 'delete-backward-char)
+(global-set-key (kbd "C-c >") 'comment-region)
+(global-set-key (kbd "C-c <") 'uncomment-region)
+(global-set-key (kbd "C-x g") 'goto-line)
+
+;; sequential-command.el
+;; 同じコマンドを連続実行したときの振舞いを変更する
+;; Emacs テクニックバイブル P76
+(require 'sequential-command-config)
+(sequential-command-setup-keys)
 
 ;; カーソル位置から行頭まで削除する
 (defun backward-kill-line (arg)
@@ -50,7 +56,7 @@
 
 ;; リドゥ
 (require 'redo)
-(global-set-key "\C-\\" 'redo)
+(global-set-key (kbd "C-\\") 'redo)
 
 ;; シフト + 矢印で範囲選択
 (setq pc-select-selection-keys-only t)
