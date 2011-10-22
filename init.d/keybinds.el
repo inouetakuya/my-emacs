@@ -1,3 +1,40 @@
+;; Emacs に問い合わせする
+;; Emacs テクニックバイブル P54
+;; (describe-bindings)          ;; キーに割り当てられているコマンド一覧
+;; (describe-key (kbd "C-h"))   ;; キーに割り当てられているコマンド
+;; (describe-key "\C-h")        ;; キーに割り当てられているコマンド
+
+;; コマンドメモ
+;; Emacs テクニックバイブル P69
+;; (describe-key (kbd "C-x TAB"))   ;; リージョン範囲をインデントする
+;; (describe-key (kbd "C-x C-w"))   ;; 別の名前でバッファを保存する
+;; (describe-key (kbd "C-x C-x"))   ;; ポイントとマークを入れ替える
+;; (describe-key (kbd "C-x C-0"))   ;; 現在のウィンドウを消す
+
+;; プレフィクスキーメモ
+;; "C-x r"  ;; レジスタ（Register）、矩形（Rectangle）関連
+;; "C-x v"  ;; バージョン管理（Version control）関連
+;; "C-c"    ;; C-c に続くキー列はグローバルキーマップには登録されていない
+            ;; C-c の後にコントロール文字（C-a から C-z）、
+            ;;     数字、[ ] < > ; : が続くキー列はメジャーモードが使う
+            ;;     その他はユーザが自由に定義してよい
+
+;; define-key
+;; Emacs テクニックバイブル P73
+;; 端末上の Emacs では使えないキー
+;; C-; C-: C-@ C-, C-.
+;; C-t はカーソル前後の文字を入れ替える transpose-chars コマンドに
+;;     割り当てられているが、このコマンドを使わない人にとっては準特等席
+
+;; 新しいウィンドウに移る
+;; 分割していないときは、左右分割して、新しいウィンドウに移る
+(defun other-window-or-split ()
+  (interactive)
+  (when (one-window-p)
+    (split-window-horizontally))
+  (other-window 1))
+(global-set-key (kbd "C-t") 'other-window-or-split)
+  
 ;; キーバインド（グローバル）
 (global-set-key "\C-h" 'delete-backward-char)
 (global-set-key "\C-c>" 'comment-region)

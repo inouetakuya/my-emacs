@@ -29,10 +29,13 @@
 ;; (info "(ファイル名)ノード名")
 ;; (install-elisp "URL")
 ;; (install-elisp-from-emacswiki "ファイル名")
-;; (describe-function '関数名)
-;; (describe-variable '変数名)
-;; (find-function '関数名)
-;; (find-variable '変数名)
+;; (describe-function '関数名)    ;; 関数の説明
+;; (describe-variable '変数名)    ;; 変数の説明
+;; (find-function '関数名)        ;; 関数定義
+;; (find-variable '変数名)        ;; 変数定義
+;; (describe-bindings)            ;; キーに割り当てられているコマンド一覧
+;; (describe-key (kbd "C-h"))     ;; キーに割り当てられているコマンド
+;; (describe-key "\C-h")          ;; キーに割り当てられているコマンド
 
 ;; ELPA
 ;; パッケージを簡単にインストールする
@@ -59,7 +62,7 @@
 ;; Emacs テクニックバイブル P87
 (require 'recentf-ext)
 (setq recentf-max-saved-items 500)
-(global-set-key (kbd "C-c C-r") 'recentf-open-files)
+(global-set-key (kbd "C-;") 'recentf-open-files)
 
 ;; ============================================================
 ;; Emacs(中略)設定講座 その2「elisp のインストールと設定編」。 - 日々、とんは語る。
@@ -70,10 +73,10 @@
 (global-auto-complete-mode t)
 (setq ac-auto-start t)
 ;; (setq ac-auto-start 3)
-(global-set-key "\M-/" 'ac-start)
-(define-key ac-complete-mode-map "\M-/" 'ac-stop)
-(define-key ac-complete-mode-map "\C-n" 'ac-next)
-(define-key ac-complete-mode-map "\C-p" 'ac-previous)
+(global-set-key (kbd "M-/") 'ac-start)
+(define-key ac-complete-mode-map (kbd "M-/") 'ac-stop)
+(define-key ac-complete-mode-map (kbd "C-n") 'ac-next)
+(define-key ac-complete-mode-map (kbd "C-p") 'ac-previous)
 
 ;; ============================================================
 ;; Git を使うときに日本語でも文字化けしないようにする
