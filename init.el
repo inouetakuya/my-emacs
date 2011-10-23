@@ -7,6 +7,7 @@
 ;; (setq load-path (cons "~/.emacs.d/init.d" load-path))
 (load "~/.emacs.d/init.d/keybinds.el")
 (load "~/.emacs.d/init.d/view.el")
+(load "~/.emacs.d/init.d/auto-complete.el")
 
 ;; auto-install.el
 ;; Emacs Lisp インストーラを利用する
@@ -15,7 +16,7 @@
 (require 'auto-install)
 ;; 起動時に EmacsWiki のページ名を補完候補に加える
 ;; wget が必要 >> $ brew install wget
-(auto-install-update-emacswiki-package-name t)
+;; (auto-install-update-emacswiki-package-name t)
 ;; install-elisp.el 互換モードにする
 (auto-install-compatibility-setup)
 (setq install-elisp-repository-directory "~/.emacs.d/elisp/")
@@ -106,20 +107,6 @@
 ;; 書き換えが終了したら、C-c C-c か C-x C-s
 ;; 変更を反映しない場合は C-c C-k
 (define-key dired-mode-map "r" 'wdired-change-to-wdired-mode)
-
-;; ============================================================
-;; Emacs(中略)設定講座 その2「elisp のインストールと設定編」。 - 日々、とんは語る。
-;; http://d.hatena.ne.jp/tomoya/20090124/1232822594
-
-;; auto-complete
-(require 'auto-complete)
-(global-auto-complete-mode t)
-(setq ac-auto-start t)
-;; (setq ac-auto-start 3)
-(global-set-key (kbd "M-/") 'ac-start)
-(define-key ac-complete-mode-map (kbd "M-/") 'ac-stop)
-(define-key ac-complete-mode-map (kbd "C-n") 'ac-next)
-(define-key ac-complete-mode-map (kbd "C-p") 'ac-previous)
 
 ;; ============================================================
 ;; Git を使うときに日本語でも文字化けしないようにする
