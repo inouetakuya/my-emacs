@@ -1209,7 +1209,7 @@ HANDLE-FUNCTION is function for handle download content."
           (unless auto-install-save-confirm
             (auto-install-buffer-save))
         (message "%s is up-to-date" (url-file-nondirectory auto-install-download-url))
-        (kill-buffer))
+        (kill-buffer nil))
       ;; (unless auto-install-save-confirm
       ;;   (auto-install-buffer-save))
       )))
@@ -1334,7 +1334,7 @@ This command just run when have exist old version."
 
 (defun auto-install-cleanup ()
   (while auto-install-minor-mode
-    (kill-buffer))
+    (kill-buffer nil))
   (setq auto-install-url-queue nil)
   (setq auto-install-download-buffer-alist nil)
   (setq auto-install-batch-using nil))
