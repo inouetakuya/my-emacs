@@ -47,6 +47,10 @@
 (require 'sequential-command-config)
 (sequential-command-setup-keys)
 
+;; 文字列を置換する
+;; Emacs テクニックバイブル P151
+(global-set-key (kbd "C-c r") 'query-replace)
+
 ;; カーソル位置から行頭まで削除する
 (defun backward-kill-line (arg)
   "Kill chars backward until encountering the end of a line."
