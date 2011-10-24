@@ -21,7 +21,8 @@
 ;; (auto-install-update-emacswiki-package-name t)
 ;; install-elisp.el 互換モードにする
 (auto-install-compatibility-setup)
-(setq install-elisp-repository-directory "~/.emacs.d/elisp/")
+;; Emacs Lisp ファイルの保存場所
+(setq auto-install-directory "~/.emacs.d/elisp/")
 ;; ediff 関連のバッファを 1つのフレームにまとめる
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 
