@@ -106,6 +106,21 @@
     (bookmark-save))
   (add-hook 'bookmark-after-jump-hook 'bookmark-arrange-latest-top))
 
+;; emacsclient
+;; シェルから現在の Emacs にアクセスする
+;; Emacs テクニックバイブル P91
+;; emacsclientを使おう - Life is very short
+;; http://d.hatena.ne.jp/syohex/20101224/1293206906
+;; Gitのcore.editorにEmacsを指定する試行錯誤(Macの場合) (Kanasansoft Web Lab.)
+;; http://www.kanasansoft.com/weblab/2010/03/git_core_editor_emacs_mac.html
+(when (eq window-system 'mac)
+  (require 'server)
+  (server-start)
+  ;; 終了コマンド（デフォルトは C-x #）
+  (global-set-key (kbd "C-x C-c") 'server-edit))
+;; M-x exit で Emacs を終了できるようにする
+(defalias 'exit 'save-buffers-kill-emacs)
+
 ;; wdired.el
 ;; ディレクトリ内のファイル名を自由自在に編集する
 ;; Emacs テクニックバイブル P102
@@ -168,15 +183,6 @@
 (set-face-foreground 'git-commit-summary-face nil)
 (set-face-bold-p     'git-commit-summary-face nil)
 (set-face-foreground 'git-commit-nonempty-second-line-face nil)
-
-;; emacsclientを使おう - Life is very short
-;; http://d.hatena.ne.jp/syohex/20101224/1293206906
-
-;; Gitのcore.editorにEmacsを指定する試行錯誤(Macの場合) (Kanasansoft Web Lab.)
-;; http://www.kanasansoft.com/weblab/2010/03/git_core_editor_emacs_mac.html
-(when (eq window-system 'mac)
-  (require 'server)
-  (server-start))
 
 ;; ============================================================
 ;; 起動時にロゴを表示させない
