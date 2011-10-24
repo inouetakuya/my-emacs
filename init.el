@@ -117,6 +117,16 @@
 (require 'color-moccur)
 (setq moccur-split-word t)
 
+;; moccur-edit.el
+;; color-moccur.el の結果を編集する
+;; Emacs テクニックバイブル P157
+;; (M-x install-elisp-from-emacswiki moccur-edit.el)
+;; M-x moccur または M-x occur-by-moccur の検索結果表示中に
+;; r（または C-c C-i）で編集状態になる
+;; C-c C-c（moccur-edit-finish-edit） で変更をファイルに反映させる
+;; C-c C-k（moccur-edit-kill-all-change）で変更を破棄
+(require 'moccur-edit)
+
 ;; ============================================================
 ;; Git を使うときに日本語でも文字化けしないようにする
 (setenv "LANG" "ja_JP.UTF-8")
