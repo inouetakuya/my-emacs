@@ -32,8 +32,8 @@
 ;; インクリメンタルサーチと occur を合体する
 ;; Emacs テクニックバイブル P326
 ;; (install-elisp "http://svn.coderepos.org/share/lang/elisp/anything-c-moccur/trunk/anything-c-moccur.el")
-;; Compiling file /Users/inouetakuya/.emacs.d/auto-install/anything-c-moccur.el at Sun Oct 23 23:26:20 2011
-;; anything-c-moccur.el:86:1:Error: Cannot open load file: color-moccur
-;; 上記のように color-moccur が必要なので、保留
-;; (require 'anything-c-moccur)
+(require 'anything-c-moccur)
+(global-set-key (kbd "M-s") 'anything-c-moccur-occur-by-moccur)
+;; インクリメンタルサーチから移行できるように
+(define-key isearch-mode-map (kbd "C-o") 'anything-c-moccur-from-isearch)
 
