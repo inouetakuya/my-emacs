@@ -92,6 +92,9 @@
 ;; bookmark.el
 ;; ファイル内の特定の位置をブックマークする
 ;; Emacs テクニックバイブル P89
+;; C-x r m（bookmark-set）
+;; C-x r l（bookmark-bmenu-list）
+;; d または k で削除マークを付けて x で削除
 ;; ブックマークを変更したら即保存する
 (setq bookmark-save-flag t)
 ;; 超整理法

@@ -8,6 +8,11 @@
 ;; C-z ファイル・バッファを「チラ見」する
 ;; C-g で anything セッションを中断
 
+;; M-x anything-for-files
+;; ファイルを開くコマンドをまとめる
+;; Emacs テクニックバイブル P311
+(global-set-key (kbd "C-'") 'anything-for-files)
+
 ;; describe-bindings >> descbinds-anything.el
 ;; キーバインドを調べる
 ;; Emacs テクニックバイブル P319
