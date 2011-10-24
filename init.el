@@ -110,6 +110,13 @@
 ;; 変更を反映しない場合は C-c C-k
 (define-key dired-mode-map "r" 'wdired-change-to-wdired-mode)
 
+;; color-moccur.el
+;; バッファ内（複数可）を検索する
+;; Emacs テクニックバイブル P155
+;; (M-x install-elisp-from-emacswiki color-moccur.el)
+(require 'color-moccur)
+(setq moccur-split-word t)
+
 ;; ============================================================
 ;; Git を使うときに日本語でも文字化けしないようにする
 (setenv "LANG" "ja_JP.UTF-8")
