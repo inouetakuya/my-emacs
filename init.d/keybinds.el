@@ -51,6 +51,10 @@
 ;; Emacs テクニックバイブル P151
 (global-set-key (kbd "C-c r") 'query-replace)
 
+;; 正規表現置換をする
+;; Emacs テクニックバイブル P153
+(defalias 'qrr 'query-replace-regexp)
+
 ;; カーソル位置から行頭まで削除する
 (defun backward-kill-line (arg)
   "Kill chars backward until encountering the end of a line."
