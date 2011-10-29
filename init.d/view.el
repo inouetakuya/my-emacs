@@ -1,12 +1,23 @@
 ;; 起動時のフレームサイズ
-(setq initial-frame-alist
-    (append (list
-    '(width . 120)
-    '(height . 50)
-    '(top . 50)
-    '(left . 50)
-    )
-    initial-frame-alist))
+(when (equal system-name "ANGELINA.local")
+  (setq initial-frame-alist
+        (append (list
+                 '(width . 120)
+                 '(height . 50)
+                 '(top . 50)
+                 '(left . 50)
+                 )
+                initial-frame-alist)))
+
+(when (equal system-name "MATHILDA.local")
+  (setq initial-frame-alist
+        (append (list
+                 '(width . 120)
+                 '(height . 34)
+                 '(top . 50)
+                 '(left . 100)
+                 )
+                initial-frame-alist)))
 
 ;; デフォルトのフレームサイズを、起動時のフレームサイズと同一にする
 (setq default-frame-alist initial-frame-alist)
