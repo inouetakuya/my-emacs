@@ -175,6 +175,15 @@
 ;; http://d.hatena.ne.jp/mooz/20090613/p1
 ;; (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
+;; js2-mode
+;; Emacs で JavaScript を書く
+;; http://8-p.info/emacs-javascript.html
+;; InstallationInstructions - js2-mode - Enhanced JavaScript IDE Emacs Mode - Google Project Hosting
+;; http://code.google.com/p/js2-mode/wiki/InstallationInstructions
+(autoload 'js2-mode "js2" nil t)
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+(setq js2-basic-offset 2)
+
 ;; ============================================================
 ;; git-commit-modeの導入 - Life is very short
 ;; http://d.hatena.ne.jp/syohex/20110308/1299596133
