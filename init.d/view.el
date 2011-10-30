@@ -5,7 +5,7 @@
                  '(width . 120)
                  '(height . 50)
                  '(top . 50)
-                 '(left . 50)
+                 '(left . 800)
                  )
                 initial-frame-alist)))
 
