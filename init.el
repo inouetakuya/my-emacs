@@ -193,6 +193,14 @@
 (set-face-foreground 'git-commit-nonempty-second-line-face nil)
 
 ;; ============================================================
+;; markdown-mode
+;; http://jblevins.org/projects/markdown-mode/
+(autoload 'markdown-mode "markdown-mode.el"
+   "Major mode for editing Markdown files" t)
+(setq auto-mode-alist
+   (cons '("\\.text" . markdown-mode) auto-mode-alist))
+
+;; ============================================================
 ;; 起動時にロゴを表示させない
 (setq inhibit-startup-message t)
 

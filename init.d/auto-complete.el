@@ -12,7 +12,7 @@
 (global-auto-complete-mode t)
 ;; global-auto-complete-mode が有効な時に auto-complete-mode が自動的に有効になるモード
 ;; (describe-variable 'ac-modes)
-(setq ac-auto-start t)
+(setq ac-auto-start 4)
 
 ;; 補完の中止は C-g でも可能だが、マクロ定義中などは C-g したくないので
 (define-key ac-completing-map (kbd "M-/") 'ac-stop)
