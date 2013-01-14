@@ -1,7 +1,6 @@
 Emacs の設定ファイルや Lisp
-====
 
-## Install
+## Getting Started
 ```
 cd
 mkdir .emacs.d
