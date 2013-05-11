@@ -7,7 +7,6 @@
 (load "~/.emacs.d/init.d/keybinds.el")
 (load "~/.emacs.d/init.d/view.el")
 (load "~/.emacs.d/init.d/auto-complete.el")
-(load "~/.emacs.d/init.d/migemo.el")
 (load "~/.emacs.d/init.d/anything.el")
 
 ;; auto-install.el
