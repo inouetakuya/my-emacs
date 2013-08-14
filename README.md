@@ -2,10 +2,8 @@ Emacs の設定ファイルや Lisp
 
 ## Getting Started
 ```
-cd
-mkdir .emacs.d
-cd .emacs.d
-git clone git@github.com:inouetakuya/emacs.git ./
+$ mkdir ~/.emacs.d
+$ git clone git@github.com:inouetakuya/emacs.git ~/.emacs.d
 ```
 
 ## 参考書籍
