@@ -148,6 +148,10 @@
 ;; Git を使うときに日本語でも文字化けしないようにする
 (setenv "LANG" "ja_JP.UTF-8")
 
+;; Git のコミットメッセージは、強制的に UTF-8 で書く
+;; http://qiita.com/ymdsmn_bot/items/8a6bf77bbb862400e45d
+(modify-coding-system-alist 'file "COMMIT_EDITMSG" 'utf-8)
+
 ;; ansi-term でも日本語が文字化けしないようにする
 ;; 一時的な設定変更は（C-c 押した後）M-x set-locale-environment >> utf-8
 ;; ただし、Emacs 22.3 だと、部分的に文字化けする。Emacs 23.3 なら、文字化けしない
