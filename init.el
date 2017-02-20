@@ -72,6 +72,10 @@
 ;;         (concat '"/Users/inouetakuya/info:"
 ;;                 (getenv "INFOPATH")))
 
+;; Emacs における日本語文字コードの設定 | プログラマーズ雑記帳
+;; http://yohshiy.blog.fc2.com/blog-entry-273.html
+(prefer-coding-system 'utf-8)
+
 ;; iswitchb.el
 ;; バッファ切替を強化する
 ;; Emacs テクニックバイブル P85
@@ -201,7 +205,7 @@
 (autoload 'markdown-mode "markdown-mode.el"
    "Major mode for editing Markdown files" t)
 (setq auto-mode-alist
-   (cons '("\\.text" . markdown-mode) auto-mode-alist))
+   (cons '("\\.md" . markdown-mode) auto-mode-alist))
 
 ;; ============================================================
 ;; 起動時にロゴを表示させない
