@@ -201,7 +201,7 @@
 (autoload 'markdown-mode "markdown-mode.el"
    "Major mode for editing Markdown files" t)
 (setq auto-mode-alist
-   (cons '("\\.text" . markdown-mode) auto-mode-alist))
+   (cons '("\\.md" . markdown-mode) auto-mode-alist))
 
 ;; ============================================================
 ;; 起動時にロゴを表示させない
