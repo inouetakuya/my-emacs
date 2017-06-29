@@ -66,10 +66,6 @@
 (require 'redo)
 (global-set-key (kbd "C-\\") 'redo)
 
-;; シフト + 矢印で範囲選択
-(setq pc-select-selection-keys-only t)
-(pc-selection-mode t) 
-
 ;; タブではなくスペースを挿入する
 (setq-default indent-tabs-mode nil)
 
