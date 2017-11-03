@@ -1,9 +1,12 @@
+My Emacs
+========
+
 Emacs の設定ファイルや Lisp
 
 ## Getting Started
 
 ```
-git clone git@github.com:inouetakuya/emacs.git ~/.emacs.d
+git clone git@github.com:inouetakuya/my-emacs.git ~/.emacs.d
 ```
 
 ## 参考書籍
