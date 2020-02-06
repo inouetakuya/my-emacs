@@ -6,3 +6,7 @@
 ;; Emacs テクニックバイブル P76
 (require 'sequential-command-config)
 (sequential-command-setup-keys)
+
+;; リドゥ
+(require 'redo)
+(global-set-key (kbd "C-\\") 'redo)
