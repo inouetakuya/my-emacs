@@ -1,3 +1,17 @@
+;; 起動時のフレームサイズ
+(when (equal system-name "GISELE.local")
+  (setq initial-frame-alist
+        (append (list
+                 '(width . 120)
+                 '(height . 40)
+                 '(top . 800)
+                 '(left . 1200)
+                 )
+                initial-frame-alist)))
+
+;; デフォルトのフレームサイズを、起動時のフレームサイズと同一にする
+(setq default-frame-alist initial-frame-alist)
+
 ;; カラー
 (if window-system (progn
     (set-background-color "Black")
